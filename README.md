@@ -1,4 +1,4 @@
-This repo is the implementation of few basic image enhancement algorithm. The implementation is include grayscale and color image enhancement.<br />
+This repo is the implementation of few basic image enhancement algorithm. The implementation is including grayscale and color image enhancement.<br />
 There are 4 image enhancement methods in Enhancer class<br />
 <br />
 Here is the original image<br />
