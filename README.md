@@ -6,10 +6,13 @@ Here is the original image<br />
 <br />
 negative <br />
 ![alt text](https://raw.githubusercontent.com/RayXie29/Image_Enhancement/master/imgs/negative.bmp)
+<br />
 logarithmic <br />
 ![alt text](https://raw.githubusercontent.com/RayXie29/Image_Enhancement/master/imgs/logarithmic.bmp)
+<br />
 gamma correction<br />
 ![alt text](https://raw.githubusercontent.com/RayXie29/Image_Enhancement/master/imgs/gamma.bmp)
+<br />
 Histogram equalization<br />
 ![alt text](https://raw.githubusercontent.com/RayXie29/Image_Enhancement/master/imgs/histequalize.bmp)
 <br />
