@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 
 
+
 void Enhancer::Negative(cv::Mat &src,cv::Mat &dst)
 {
     if(src.channels() != 1) { return ;}
@@ -20,7 +21,7 @@ void Enhancer::Logarithmic(cv::Mat &src,cv::Mat &dst,float c)
         for(int j=0;j<src.cols;++j)
         {
             
-            dptr[j] = cv::saturate_cast<uchar>(c * log10(1+sptr[j]));
+            dptr[j] = cv::saturate_cast<uchar>(c * 255 * log2(1+sptr[j]/255.0));
         }
     }
 }
@@ -88,4 +89,32 @@ void Enhancer::HistEqualize(cv::Mat &Src,cv::Mat &Dst)
         double oldRange = (maxVal - minVal);
         Dst = (((Dst-minVal)*255)/oldRange);
     }
+}
+
+void Enhancer::EnhancementForColor(cv::Mat &Src,cv::Mat &Dst,int flag,float c,float gamma)
+{
+    if(Src.type() != CV_8UC3) { return ;}
+    Dst = Src.clone();
+    
+    cv::Mat yuvDst;
+    cv::cvtColor(Dst, yuvDst, cv::COLOR_BGR2YUV);
+    std::vector<cv::Mat> yuvVec(3);
+    cv::split(yuvDst,yuvVec);
+    
+    cv::Mat temp;
+    
+    switch (flag)
+    {
+        case 0: Negative(yuvVec[0], temp); break;
+        case 1: Logarithmic(yuvVec[0], temp,c); break;
+        case 2: gammaCorrection(yuvVec[0], temp,c,gamma); break;
+        case 3: HistEqualize(yuvVec[0], temp); break;
+        default: HistEqualize(yuvVec[0], temp); break;
+    }
+    
+    
+    yuvVec[0] = temp;
+    
+    cv::merge(yuvVec, yuvDst);
+    cv::cvtColor(yuvDst, Dst, cv::COLOR_YUV2BGR);
 }
