@@ -6,7 +6,7 @@
 
 int main(int argc, const char * argv[]) {
     
-    cv::Mat src = cv::imread("./imgs/original.bmp",cv::IMREAD_GRAYSCALE);
+    cv::Mat src = cv::imread("./imgs/original.bmp",cv::IMREAD_COLOR);
     
     cv::Mat dst1,dst2,dst3,dst4;
     Enhancer en;
